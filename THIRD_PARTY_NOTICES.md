@@ -2,7 +2,7 @@
 
 ## qrcode
 
-KaraokeLocal includes a vendored copy of the Python `qrcode` package for QR code generation.
+ITSUKI includes a vendored copy of the Python `qrcode` package for QR code generation.
 
 The license text distributed with qrcode 8.2 is reproduced below.
 

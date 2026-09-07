@@ -1,0 +1,38 @@
+<!doctype html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ITSUKI 管理者ヘルプ</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#111;color:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Yu Gothic UI","Meiryo",sans-serif}a{color:inherit}.help-layout{min-height:100vh;display:grid;grid-template-columns:290px minmax(0,1fr);background:#111;color:#f5f5f5}.help-sidebar{position:sticky;top:0;height:100vh;overflow:auto;padding:20px 16px;background:linear-gradient(180deg,#1e1425,#141116);border-right:1px solid #3e2a46}.help-brand{font-size:28px;font-weight:900;margin-bottom:5px}.help-formal{font-size:11px;line-height:1.45;color:#b9a8c1;margin-bottom:18px}.help-sidebar nav{display:grid;gap:4px}.help-sidebar nav a{display:block;text-decoration:none;padding:8px 10px;border-radius:9px;color:#e9dff0}.help-sidebar nav a:hover{background:#34223e}.help-main{max-width:1000px;width:100%;padding:24px 34px 80px}.help-main section{scroll-margin-top:18px;border-bottom:1px solid #2d2730;padding:8px 0 28px;margin-bottom:20px}.help-main h1{font-size:34px;margin:.2em 0}.help-main h2{font-size:25px;color:#f0d9ff}.help-main h3{font-size:18px;margin-top:22px;color:#d5c5df}.help-main p,.help-main li{line-height:1.8}.help-main code{background:#211b24;border:1px solid #403347;border-radius:6px;padding:2px 5px}.help-note{padding:14px;border-radius:12px;background:#24172b;border:1px solid #5b3b6b}ul,ol{padding-left:1.5em}@media(max-width:800px){.help-layout{display:block}.help-sidebar{position:relative;height:auto;border-right:0;border-bottom:1px solid #3e2a46}.help-sidebar nav{grid-template-columns:repeat(2,minmax(0,1fr))}.help-main{padding:18px 14px 60px}.help-main h1{font-size:28px}}
+</style>
+
+<div class="help-layout">
+<aside class="help-sidebar">
+  <div class="help-brand">🎤 ITSUKI</div>
+  <div class="help-formal">Interactive Terminal Service for Unified Karaoke Integration</div>
+  <nav>
+    <a href="#start">はじめに</a><a href="#install">導入</a><a href="#first">初回設定</a><a href="#db">楽曲DB</a>
+    <a href="#videos">動画ルートとスキャン</a><a href="#search">選曲・検索</a><a href="#folder">フォルダから選曲</a>
+    <a href="#queue">予約と再生</a><a href="#remote">リモコン</a><a href="#display">表示・VLC</a><a href="#volume">音量・音ズレ</a>
+    <a href="#vocal">ON/OFFボーカル</a><a href="#users">参加者・管理者</a><a href="#google">Google同期</a>
+    <a href="#backup">バックアップ</a><a href="#update">更新</a><a href="#trouble">トラブル時</a>
+  </nav>
+</aside>
+<main class="help-main">
+<section id="start"><h1>ITSUKI 管理者ヘルプ</h1><p>ITSUKIは、PCに保存したカラオケ動画をスマホやPCのブラウザから探し、予約し、VLCで順番に再生するローカルカラオケ統合ツールです。楽曲DBが未完成でも、スキャン済み動画をフォルダ階層から直接選曲できます。</p><div class="help-note"><b>正式名称</b><br>Interactive Terminal Service for Unified Karaoke Integration</div></section>
+<section id="install"><h2>1. 導入</h2><ol><li>GitHub Releasesから最新の公開ZIPを取得します。</li><li>ZIPを任意のフォルダへ展開します。中身は <code>ITSUKI.exe</code> と <code>README.txt</code> です。</li><li>VLC media playerをインストールしておきます。</li><li><code>ITSUKI.exe</code> を起動します。必要ならEXEのショートカットをデスクトップへ作成します。</li><li>初回はブラウザでTOP画面が開き、表示用Chromeも起動します。</li></ol><p>設定・履歴・ランキング・紐づけ情報はEXEとは別にPCごとのデータ領域へ保存されるため、通常の更新ではEXEを入れ替えてもデータを引き継げます。</p></section>
+<section id="first"><h2>2. 初回設定</h2><ol><li>リモコン画面から管理者PINを入力します。初期PINは <code>0000</code> です。</li><li>管理画面で管理者PINを変更します。</li><li>楽曲DB、動画ルート、VLC、待機画面など必要な項目を設定します。</li><li>「基本設定を保存」を押します。</li><li>「動画を再スキャン」を実行します。進捗は％とプログレスバーで確認できます。</li></ol><p>スキャンはバックグラウンドで続くため、開始後にTOPや検索画面へ移動しても問題ありません。</p></section>
+<section id="db"><h2>3. 楽曲DB設定</h2><h3>対応形式</h3><p><code>.kvdb</code> / <code>.sqlite3</code> / <code>.ylexa</code> に対応しています。KVDBの人物リレーションが存在する場合、別名義・所属グループ・所属メンバーも人物検索へ反映します。</p><h3>単一DBモード</h3><p>1つの楽曲DBを複数の動画ルートで共通利用します。一般的な構成ではこちらを使います。</p><h3>複数DBモード</h3><p>楽曲DBと動画ルートを1対1で組にします。動画は所属ルートに対応したDBだけで紐づけます。</p><h3>📁ボタン</h3><p>ITSUKI本体PCから管理画面を開いた場合だけ、Windowsのファイル/フォルダ選択を利用できます。スマホ・別PCでは安全のためダイアログを起動せず、パスを手入力します。</p></section>
+<section id="videos"><h2>4. 動画ルート・除外・スキャン</h2><p>動画ルートには、選曲対象にする動画が入っている最上位フォルダを指定します。ITSUKIは設定ルート外を選曲画面へ公開しません。</p><h3>除外</h3><p>作業中・未完成・一時保管など、選曲へ出したくないフォルダやファイルを除外設定へ登録します。除外配下はスキャン対象にもフォルダ選曲にも出ません。</p><h3>再スキャンが必要な時</h3><ul><li>動画ルートを追加・変更した</li><li>動画を追加・削除・移動した</li><li>除外設定を変更した</li><li>フォルダ選曲の表示拡張子を変更した</li></ul><p>フォルダ選曲用の階層情報はスキャン時に保存されます。選曲中に毎回ディスクを探索しないため、表示は高速です。スキャン後に追加した動画は、次の再スキャンまでフォルダ選曲には表示されません。</p></section>
+<section id="search"><h2>5. 選曲・検索</h2><p>TOPから曲名、歌手名、新曲・更新曲、MV/PV、LIVE、アニメ・ゲーム映像、年代、キーワード、タイアップ、外国語曲、ランキング、履歴などの入口を選べます。</p><p>楽曲DBに紐づいた動画は曲情報を使って検索できます。人物リレーション経由でヒットした場合は「別名義」「所属グループ」「所属メンバー」など理由を表示します。</p><h3>外国語曲</h3><p>英語・北京語・広東語・ドイツ語・スウェーデン語など、KVDBの言語タグを使って分類します。国旗は画像で表示します。</p></section>
+<section id="folder"><h2>6. フォルダから選曲</h2><p>DB情報を使わず、スキャン時に保存した動画フォルダ階層から動画へたどり着く選曲方法です。DB未紐づけ動画も予約できます。画面はデジ像のファイル選択UIを参考にした黒・濃灰・シアン基調で、選択位置と件数、現在パスが一目で分かる構成です。</p><ul><li>表示対象は動画ルート配下だけ</li><li>除外設定を反映</li><li>許可した動画拡張子だけ表示</li><li>ファイル移動・削除などの編集機能はなし</li><li>名前順の昇順/降順に対応</li><li>「編集」からファイル名・フォルダ名を絞り込み可能</li><li>タップ選択、ダブルクリック、十字キー＋決定に対応</li></ul></section>
+<section id="queue"><h2>7. 予約と再生</h2><p>動画を選ぶと既存の予約確認画面へ進みます。選曲者を指定して予約すると、予約リストへ追加されます。再生前には設定に応じて予約一覧を表示し、その後VLCで動画を再生します。</p><p>予約リストでは順番変更や削除ができます。管理者画面から全削除もできますが、危険操作として確認が入ります。</p></section>
+<section id="remote"><h2>8. リモコン</h2><p>通常リモコンでは再生/一時停止、送り戻し、音量変更、待機BGM音量などを操作できます。「はじめから」「演奏停止」「次曲へ」は誤操作防止の確認を表示できます。確認のON/OFFは管理画面で設定します。</p><p>管理者リモコンは管理者認証後だけ利用でき、現場で使う管理操作を通常設定画面から分離しています。</p></section>
+<section id="display"><h2>9. 表示画面・VLC</h2><p>表示画面は専用Chrome、動画はVLCを使用します。イベント中のタスクバー自動非表示・点滅抑制も設定できます。ITSUKIを正常終了すると、VLCと表示Chromeを閉じ、タスクバー設定を起動前へ戻します。</p><p>Windowsのファイル/フォルダ選択を開く時は、VLCと表示画面を一時的に隠して選択ダイアログを最前面へ出します。選択終了後に再生状態へ復帰します。</p></section>
+<section id="volume"><h2>10. 音量・音ズレ</h2><h3>ルート別標準音量</h3><p>会場で実際に動画を再生し、リモコンでちょうどよい音量に合わせてから「今の音量を標準音量に保存する」を押します。数値を手入力するのではなく、実際の再生音量を基準として保存します。</p><h3>A/V補正</h3><p>標準A/V補正を管理画面で設定できます。再生中は管理画面から50ms単位で一時調整でき、次の曲では標準値へ戻ります。</p></section>
+<section id="vocal"><h2>11. ON/OFFボーカル判定</h2><p>動画ファイル名に含まれる語からONボーカル/OFFボーカルを判定できます。全ルート共通またはルート別にルールを設定できます。</p><p><code>on</code> / <code>off</code> のような短い英字は、<code>_on_</code>、<code>(off)</code>、<code>[on]</code> のようなタグ状の区切りを優先し、曲名中の「Fight on!」「Smoke On The Water」「edition」などを誤判定しにくい仕様です。</p></section>
+<section id="users"><h2>12. 参加者・管理者</h2><p>参加者は1行1名で登録し、予約確認画面の選曲者候補に使います。管理者PINは4～12桁の数字です。管理画面URLはPCごとに生成され、管理者認証後に利用します。</p><p>管理画面上部には直近45秒以内に参加者側ページから通信した端末数を表示します。</p></section>
+<section id="google"><h2>13. Googleスプレッドシート同期</h2><p>必要な場合だけGoogle Apps Script経由で予約リストを同期できます。同期ONは起動中だけ有効で、次回起動時はOFFに戻ります。送る列と列順は管理画面から選択できます。</p><p>ネットワーク障害が起きてもローカルの予約・再生を止めないバックグラウンド同期です。</p></section>
+<section id="backup"><h2>14. バックアップ / 復元</h2><p>設定、参加者、会場設定、Google設定、管理者PIN、動画スキャン/紐づけDB、予約、履歴・ランキングなどを項目別にエクスポート/インポートできます。</p><p>「履歴だけ移行したいが、現在の曲紐づけDBは上書きしたくない」といった選択復元ができます。バックアップには認証情報が含まれる場合があるため、公開しないでください。</p></section>
+<section id="update"><h2>15. ITSUKIの更新</h2><p>公開版は起動中にGitHub Releasesの最新版を定期確認します。現在より新しい版がある場合、操作ブラウザ上部に赤い帯で通知します。通知帯にはリンクやポップアップはありません。</p><p>更新版のZIPは管理画面の「更新」からダウンロードしてください。通知が不要なら管理画面でOFFにできます。</p><ol><li>管理画面で最新版ZIPをダウンロードします。</li><li>ITSUKIを終了します。</li><li>ZIPを展開し、新しい <code>ITSUKI.exe</code> を配置します。</li><li>新しいEXEを起動します。PCごとの設定データはそのまま利用されます。</li></ol></section>
+<section id="trouble"><h2>16. トラブル時</h2><h3>新しい動画が見えない</h3><p>動画ルート・除外・拡張子を確認し、動画を再スキャンしてください。</p><h3>フォルダ選曲に追加ファイルが出ない</h3><p>仕様です。階層情報は再スキャン時に固定保存されるため、動画追加後に再スキャンしてください。</p><h3>管理画面の📁が押せない</h3><p>Windowsのファイル選択はITSUKI本体PCで管理画面を開いた時だけ利用できます。</p><h3>更新通知が出ない</h3><p>管理画面の更新欄で、更新確認先・通知設定・直近の確認結果を確認してください。</p><h3>終了後も表示が残った</h3><p>通常は安全終了処理と外部フェイルセーフでVLC・表示Chrome・タスクバー設定を復元します。デバッグログにエラーがある場合は、そのログを保存して確認してください。</p></section>
+</main></div>

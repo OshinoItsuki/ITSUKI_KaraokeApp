@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>ITSUKI v1.0.0 管理者ヘルプ</title>
+<title>ITSUKI v1.0.3 管理者ヘルプ</title>
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -77,7 +77,7 @@ ul,ol{padding-left:1.55em}
 <div class="nav-group">準備</div>
 <a class="sub" href="#display-vlc">表示画面・VLC</a>
 <a class="sub" href="#install">導入</a>
-<a class="sub" href="#first-setup">初回設定</a>
+<a class="sub" href="#first-setup">初回設定</a><a class="sub" href="#network-setting">ネットワーク設定</a>
 <a class="sub" href="#video-scan">動画ルートとスキャン</a>
 <a class="sub" href="#volume-delay">音量・音ズレ</a>
 <div class="nav-group">使い方</div>
@@ -102,6 +102,7 @@ ul,ol{padding-left:1.55em}
 <a class="sub" href="#google-sync">Googleスプレッドシート同期</a>
 <a class="sub" href="#backup">バックアップ / 復元</a>
 <a class="sub" href="#update">更新</a>
+<a class="sub" href="#tailscale">Tailscaleで外部からアクセス</a>
 <div class="nav-group">Q&amp;A</div>
 <a class="sub" href="#qa">よくある質問</a>
 <div class="nav-group">制作者について</div>
@@ -142,7 +143,31 @@ ul,ol{padding-left:1.55em}
 <li>「動画を再スキャン」を実行します。</li>
 </ol>
 <p>スキャンはバックグラウンドで続くため、スキャン開始後にTOPやリモコンへ移動しても問題ありません。管理画面へ戻れば進捗％とプログレスバーを再表示します。</p>
-<h3 id="video-scan">動画ルートとスキャン</h3>
+<h3 id="network-setting">ネットワーク設定</h3><p>ITSUKIを起動しているPC以外のスマホ・タブレット・別PCから選曲やリモコン操作をする場合は、<b>その端末とITSUKI PCがお互いに通信できるネットワーク</b>を準備してください。ITSUKI PCだけで操作する場合、この設定は不要です。</p><div class="help-note help-ok"><b>基本は「同じLAN / Wi-Fiに接続」または「Windowsのモバイルホットスポットを使う」のどちらかでOKです。</b><br/>ルーターの設定を変更できない環境や、外部ネットワークから使いたい場合は <a href="#tailscale">Tailscale</a> も利用できます。</div><h4>方法1：ITSUKI PCと操作端末を同じLAN / Wi-Fiへ接続する</h4><p>家庭や会場のルーターをそのまま使える場合は、ITSUKI PCとスマホなどを同じネットワークへ接続します。接続後、リモコン画面に表示されるLAN用QRコードまたはURLを操作端末で開いてください。</p><ul>
+<li>PCは有線LAN、スマホはWi-Fiでも、同じルーター配下で相互通信できれば利用できます。</li>
+<li>同じSSIDへ接続していても、ルーター側で端末間通信が禁止されているとITSUKIへアクセスできません。</li>
+<li>初回起動時にWindows Defender Firewallの確認が出た場合は、ITSUKIを使うネットワーク（通常はプライベートネットワーク）からの通信を許可してください。</li>
+</ul><h4>同じWi-Fiなのにアクセスできない場合</h4><p>ルーターやアクセスポイントに、<b>プライバシーセパレーター / AP isolation / Client isolation / クライアント隔離 / 無線端末間通信禁止</b> などの機能が有効になっていると、同じWi-Fiへ接続している端末同士でも通信できません。ゲストWi-Fiでも同様の隔離が有効になっていることがあります。</p><ul>
+<li>ルーターを設定できる場合：端末間通信を禁止する設定を<b>オフ</b>にします。</li>
+<li>店舗・ホテル・イベント会場などでルーター設定を変更できない場合：下記の<b>Windowsモバイルホットスポット</b>を使うのが簡単です。</li>
+<li>モバイルホットスポットを使えない場合や、外部ネットワークから接続したい場合：<a href="#tailscale">便利機能のTailscale</a>を利用してください。</li>
+</ul><div class="help-note help-warn"><b>「同じWi-Fi名に接続している」だけでは、必ずしも同じ端末同士で通信できるとは限りません。</b><br/>ITSUKIのページが開けないときは、まず端末隔離系の設定を確認してください。</div><h4>方法2：Windowsのモバイルホットスポットを使う</h4><p>ルーター側を触れない場合は、ITSUKI PC自身をアクセスポイント代わりにして、スマホをそこへ直接接続できます。Windows 10 / 11のモバイルホットスポットでは、Wi-Fi・Ethernet・携帯データネットワークなどの接続を、Wi-FiまたはBluetooth経由で共有できます。ITSUKI用途では<b>Wi-Fiでの共有</b>がおすすめです。</p><ol class="steps">
+<li>Windowsの <span class="toc-path">設定 → ネットワークとインターネット → モバイル ホットスポット</span> を開きます。</li>
+<li>「インターネット接続の共有元」で、PCが現在利用している接続（Wi-Fi / Ethernetなど）を選びます。</li>
+<li>「共有方法」は <b>Wi-Fi</b> を選びます。</li>
+<li>「編集」から、参加者に案内しやすいネットワーク名（SSID）とパスワードを設定します。周波数帯を選べる場合、互換性や到達距離を優先するなら2.4GHz、対応端末が揃っていて速度を優先するなら5GHzが目安です。</li>
+<li>「インターネット接続を他のデバイスと共有する」をオンにします。</li>
+<li>スマホやタブレットのWi-Fi設定から、設定したSSIDへ接続します。</li>
+<li>ITSUKIのリモコン画面に表示されるLAN用QRコードまたはURLを開き、TOP画面へアクセスできることを確認します。</li>
+</ol><div class="download-links">
+<a href="https://support.microsoft.com/ja-jp/windows/experience/connectivity-networking/use-your-windows-device-as-a-mobile-hotspot" rel="noopener" target="_blank">Microsoft公式：モバイルホットスポットの設定方法</a>
+</div><h4>モバイルホットスポットを使うための条件・注意点</h4><ul>
+<li>Wi-Fiで共有する場合は、PCに<b>利用可能なWi-Fiアダプターと対応ドライバー</b>が必要です。</li>
+<li>PCやWi-Fiアダプター、ドライバー、組織の管理ポリシーなどによっては「モバイル ホットスポット」が表示されない、グレーアウトする、Wi-Fi共有を開始できない場合があります。</li>
+<li>項目が使えない場合は、Wi-Fiアダプターが有効か確認し、Windows UpdateやPC / Wi-Fiアダプターメーカー提供のドライバーを更新してください。それでも利用できない場合は、同一LAN方式またはTailscaleを利用してください。</li>
+<li>PCがスリープするとホットスポットやITSUKI自体へ接続できなくなるため、カラオケ利用中はPCが自動スリープしない設定にしておくことをおすすめします。</li>
+<li>多数の端末を接続する場合は、PCやWi-Fiアダプターによって安定して接続できる台数や範囲が変わります。大人数で使う場合は、専用のアクセスポイントやトラベルルーターを使う方法もあります。</li>
+</ul><h4>方法3：Tailscaleを使う</h4><p>会場のネットワークで端末間通信が禁止されている、ルーター設定を変更できない、または会場の外からITSUKIへアクセスしたい場合はTailscaleを利用できます。ITSUKI PCと操作端末の両方がインターネットへ接続できる必要があります。詳しい設定は <a href="#tailscale">Tailscaleで外部からアクセス</a> を確認してください。</p><h3 id="video-scan">動画ルートとスキャン</h3>
 <p>動画ルートには、選曲対象にしたい動画が入っている最上位フォルダを指定します。ブラウザから辿れるのは、設定した動画ルート配下だけです。</p>
 <ul>
 <li>管理画面の📁ボタンはITSUKI本体PCから開いた場合だけ利用できます。</li>
@@ -248,6 +273,16 @@ ul,ol{padding-left:1.55em}
 <h2>便利機能</h2>
 <h3 id="music-db">楽曲DB</h3>
 <p><code>.kvdb</code> / <code>.sqlite3</code> / <code>.ylexa</code> に対応しています。KVDBでは人物の別名義・所属グループ・所属メンバーなどの関連情報も検索へ反映できます。歌手検索では関連候補の表示/非表示と、一致方法（部分 / 完全 / 前方）を切り替えられます。</p>
+<h4>分類ページに表示するためのDB設定</h4>
+<p>一部の選曲ページは、楽曲DBに設定されたタグ・キーワード・タイアップ情報を使って自動分類します。該当ページへ表示したい場合は、次の情報を楽曲DBへ設定してください。</p>
+<ul>
+<li><b>外国語曲：</b>楽曲タグに <code>英語</code>、<code>中国語</code>、<code>北京語</code>、<code>広東語</code>、<code>ドイツ語</code>、<code>スウェーデン語</code> などの言語名を設定します。中国語系は <code>中国語</code> / <code>北京語</code> / <code>広東語</code> のいずれも認識します。</li>
+<li><b>パート分け：</b>楽曲キーワードに <code>パート分け</code> を設定します。</li>
+<li><b>アニメ・ゲーム映像：</b>タイアップカテゴリが <code>アニメ</code> または <code>ゲーム</code> の楽曲で、さらに楽曲タグに <code>MAD</code> を設定すると分類されます。</li>
+<li><b>MV・PV：</b>楽曲タグに <code>MV</code> または <code>PV</code> を設定します。</li>
+<li><b>LIVE：</b>楽曲タグに <code>LIVE</code> を設定します。</li>
+</ul>
+<div class="help-note help-ok"><b>分類用の情報は動画ファイル名ではなく、紐づけた楽曲DBの情報を参照します。</b><br/>タグやキーワードを変更した場合は、必要に応じて楽曲DBを再読み込み・動画を再スキャンして表示を確認してください。</div>
 <div class="help-note help-ok"><b>楽曲DBは必須ではありません。</b><br/>DBが無い場合でも、<a href="#folder-selection">フォルダから選曲</a>から動画ファイルを直接探して予約できます。</div>
 <p>楽曲DBを自分で作りたい場合は、公開しているDB編集ツールを利用できます。</p>
 <div class="download-links">
@@ -281,6 +316,19 @@ ul,ol{padding-left:1.55em}
 <li>ZIPを展開し、新しい <code>ITSUKI.exe</code>、<code>README.txt</code>、<code>help.html</code> を配置します。</li>
 <li>新しいEXEを起動します。設定・履歴などはそのまま引き継がれます。</li>
 </ol>
+<h3 id="tailscale">Tailscaleで外部からアクセス</h3>
+<p><b>Tailscale</b>を利用すると、自宅外・会場外などの外部ネットワークからでも、同じTailnetに参加している端末からITSUKIへアクセスできます。ITSUKIを動かしているPCと、外部からアクセスするスマートフォン / PCの両方へTailscaleを導入し、同じアカウントまたは同じTailnetへ参加させてください。</p>
+<div class="help-note help-ok"><b>ITSUKIはTailscaleのIPv4アドレスを自動検出します。</b><br/>Tailscaleが利用可能な場合、通常リモコンのQRコード欄で「LAN / Tailscale」を切り替えられます。「Tailscale」を選ぶと、同じTailnet内から使えるURLとQRコードが表示されます。</div>
+<ol class="steps">
+<li>ITSUKIを動かすPCへTailscaleをインストールしてログインします。</li>
+<li>外部からアクセスするスマートフォン / PCにもTailscaleをインストールし、同じTailnetへ参加します。</li>
+<li>ITSUKIの通常リモコンを開き、QRコード欄の「Tailscale」を選択します。</li>
+<li>表示されたQRコードを読み取るか、<code>http://100.x.x.x:ポート番号/</code> の形式で表示されるURLへアクセスします。</li>
+</ol>
+<p>同じTailnet内だけで通信するため、通常はインターネット側へITSUKIのポートを公開する必要はありません。Tailscaleを接続していない一般のインターネット端末からは、このURLへ直接アクセスできません。</p>
+<div class="download-links">
+<a href="https://tailscale.com/download" rel="noopener" target="_blank">Tailscale公式サイトからダウンロード</a>
+</div>
 </section>
 <section id="qa">
 <h2>Q&amp;A</h2>

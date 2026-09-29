@@ -31,7 +31,12 @@ ITSUKIは、PCに保存したカラオケ動画をスマホやPCのブラウザ�
 - [Google Chrome](https://www.google.com/chrome/)
 - 自分で用意したカラオケ動画
 - 楽曲DBは任意
-- 動画サイト予約を使う場合のみ [yt-dlp](https://github.com/yt-dlp/yt-dlp)（ffmpegも推奨）
+
+### 動画サイト予約を使う場合
+- インターネット接続
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [ffmpeg](https://ffmpeg.org/)（高画質の映像・音声を結合するため推奨）
+- JavaScriptランタイム（YouTube利用時は [Deno](https://deno.com/) 推奨）
 
 ## はじめかた
 

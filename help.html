@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>ITSUKI v1.5.28 管理者ヘルプ</title>
+<title>ITSUKI v1.5.40 管理者ヘルプ</title>
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -167,6 +167,7 @@ ul,ol{padding-left:1.55em}
 <div class="brand-subtitle">Interactive Terminal Service for Unified Karaoke Integration</div>
 <p>ITSUKIは、PCに保存しているカラオケ動画を、スマホやPCのブラウザから検索・予約し、VLCで順番に再生するローカルカラオケ統合ツールです。</p>
 <p>楽曲DBを使った検索だけでなく、<b>DBが無い状態でもスキャン済みフォルダから動画ファイルを直接探して予約できます。</b> まず動画だけで使い始め、あとからDBを整備して検索機能を増やすこともできます。</p>
+<div class="help-note"><b>作者からのご案内</b><br/>ITSUKIは、作者が自分のカラオケ環境で便利に使えるよう、欲しかった機能を詰め込んで開発したソフトです。幅広い利用環境を想定した汎用ソフトではないため、PCの構成や接続機器、動画・楽曲DBの管理方法によっては一部の機能が想定どおりに動作しない場合があります。すべての環境での動作を保証するものではないことをご理解のうえ、ご利用ください。</div>
 </section>
 <section id="preparation">
 <h2>準備</h2>
@@ -193,7 +194,8 @@ ul,ol{padding-left:1.55em}
 <li><a href="#admin-page">管理画面</a> の手順に従って管理者認証し、管理画面を開きます。</li>
 <li>管理者PINを自分用に変更します。</li>
 <li>動画ルートを設定します。楽曲DBは後からでも構いません。</li>
-<li>必要に応じてVLC、待機画面、音量、参加者などを設定して保存します。</li><li>準備ができたら管理画面上部の「スタート」を押します。表示専用Chromeと待機VLCが起動します。</li>
+<li>必要に応じてVLC、待機画面、音量、参加者などを設定して保存します。</li>
+<li><b>参加者設定とイベント固定選曲順：</b>管理画面の「参加者設定」に参加者名と固定選曲順をまとめました。仕切り線より上の参加者が上から順に歌い、下の参加者はまだ参加していない人・固定順から除外する人として扱います。名前の↑↓移動・削除・仕切り線の↑↓移動に対応し、参加者名を改行区切りでまとめて追加できます。「参加者と順番を保存」で確定してください。従来の選曲順位は自動で並びに引き継がれます。</li><li>準備ができたら管理画面上部の「スタート」を押します。表示専用Chromeと待機VLCが起動します。</li>
 <li>「動画を再スキャン」を実行します。</li>
 </ol>
 <p>スキャンはバックグラウンドで続くため、スキャン開始後にTOPやリモコンへ移動しても問題ありません。管理画面へ戻れば進捗％とプログレスバーを再表示します。</p>
@@ -833,7 +835,7 @@ Google側のCode.gsを最新版にして再デプロイしてください。
 <h4 class="qa-q">Q. 終了後もVLCや表示Chromeが残ります</h4>
 <p class="qa-a"><b>A.</b> 通常終了ではVLC・表示Chrome・タスクバー設定をまとめて復元します。問題が続く場合は管理画面の「システム → デバッグログ」から診断ログを保存するか、「ログ情報を送信」で製作者へ送ってください。送信時は具体的な症状や再現手順も本文に記載してください。</p>
 </div>
-<div class="help-note help-warn"><b>その他、解決できないトラブルがある場合</b><br/>不具合の場合は、可能であれば管理画面の「ログ情報を送信」から診断ログと具体的な症状を一緒に送ってください。機能追加要望はTwitterのDMまたはGitHub Issuesから送れます。</div>
+<div class="help-note help-warn"><b>その他、解決できないトラブルがある場合</b><br/>ちょっとした質問・不具合の一報・使ってみた感想・機能のアイデアなどは、X（Twitter）で <a href="https://x.com/animehakase" rel="noopener" target="_blank">@animehakase</a> 宛にメンションしてください。正式なお問い合わせや診断ログを送る場合は、管理画面の「ログ情報を送信」またはメール（itsuki_project_s@yahoo.co.jp）をご利用ください。ログにはPC内のファイルパスなどが含まれるため、公開ポストには添付しないでください。</div>
 <div class="qa-item"><h4 class="qa-q">Q. NEXT表示が出ません</h4><p class="qa-a"><b>A.</b> 管理画面の「曲終了後のNEXT表示時間」が0秒になっていないか確認してください。自然終了時だけでなく、「演奏停止」でもフェードアウト完了後のフレームを止めて表示します。</p>
 <p class="qa-a">演奏停止時のフェード時間は管理画面の「演奏停止時のフェードアウト時間」で調整できます。</p></div><div class="qa-item"><h4 class="qa-q">Q. 曲情報と動画が違っています</h4><p class="qa-a"><b>A.</b> 選曲予約画面右上の「⚠ 間違い通報」から管理者へ送信してください。管理者は管理画面の「間違い通報」で未対応の報告を確認できます。</p></div></section>
 <section id="release-notes">
@@ -856,11 +858,11 @@ Google側のCode.gsを最新版にして再デプロイしてください。
 <div class="brand-subtitle">@animehakase</div>
 <div class="contact-grid">
 <div>Mail：<a href="mailto:itsuki_project_s@yahoo.co.jp">itsuki_project_s@yahoo.co.jp</a></div>
-<div>Twitter / DM：<a href="https://x.com/animehakase" rel="noopener" target="_blank">@animehakase</a></div>
+<div>X（Twitter）メンション：<a href="https://x.com/animehakase" rel="noopener" target="_blank">@animehakase</a></div>
 <div>更新・開発状況：<a href="https://x.com/search?q=ITSUKI_KaraokeApp" rel="noopener" target="_blank">#ITSUKI_KaraokeApp</a></div>
 <div>バグ報告・機能追加要望：<a href="https://github.com/OshinoItsuki/ITSUKI_KaraokeApp/issues" rel="noopener" target="_blank">GitHub Issues</a></div>
 </div>
-<p class="small">追加してほしい機能やバグ報告は、TwitterのDMもしくはGitHubのIssueからお願いします。</p>
+<p class="small">些細な質問や使ってみた感想、不具合の一報、機能のアイデアなど、何でもお気軽にX（Twitter）で @animehakase 宛にメンションしてください。DMは開放していません。正式なお問い合わせや診断ログの送付はメールでお願いします。PC内のパスなどを含むログは公開ポストに添付しないでください。</p>
 <div style="margin-top:24px;padding-top:20px;border-top:1px solid #654373">
 <h3 id="development-support">開発支援のお願い</h3>
 <p>ITSUKIは無料で公開しているツールで、利用料金や広告による収益はありません。今後も改善と更新を続けていきたいと考えていますが、継続的な開発をお約束できるわけではありません。</p>
